@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Buy milk",
+    "completed": true
+  },
+  {
+    "text": "Feed the cat",
+    "completed": false
+  },
+  {
+    "text": "Cleaning home",
+    "completed": true
+  }
+]
