@@ -1,1 +1,11 @@
+# ToDo App
 My first pet-project ToDo application.
+Simple console-based ToDo application in Python.
+
+# Features
+- Add tasks
+- Mark tasks as completed
+- Save tasks to JSON file
+
+# Run
+python main.py
