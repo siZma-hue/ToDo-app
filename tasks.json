@@ -10,5 +10,9 @@
   {
     "text": "Cleaning home",
     "completed": true
+  },
+  {
+    "text": "выбросить мусор",
+    "completed": true
   }
 ]
