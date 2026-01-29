@@ -6,3 +6,4 @@ class Task:
     def __str__(self):
         status = "✓" if self.completed else "✗"
         return f'{status} {self.text}'
+
