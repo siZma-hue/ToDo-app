@@ -3,8 +3,7 @@ from task import Task
 from tkinter import *
 from place_manager import PlaceManage
 
-def clicked():
-    return
+task_labels = []
 
 
 def main():
@@ -14,26 +13,58 @@ def main():
     root = Tk()
     root.title('Welcome in ToDo App')
     root.geometry('500x600')
+    root.configure(bg='dark slate gray')
 
 
-    if not todo.tasks:
-        lbl1 = Label(root, text='Ваш список пустой. Задач нет!')
-        lbl1.place(row=0, column=0)
-    else:
-        for i, task in enumerate(todo.tasks, 1):
-            lbl2 = Label(root, text=f'{i}. {task}', font=('Arial', 20))
-            lbl2.pack()
 
-    btn1 = Button(root, text='Добавить задачу', command=clicked, font=('Arial', 15))
+# начало работы с кнопкой
+
+    def clicked():
+        entry = Entry(root, font=('Arial', 15))
+        entry.place(x=46, y=112)
+
+        def on_add_click():
+
+            text = entry.get()
+            if text.strip() == '':
+                return
+
+            new_task = Task(text=text)
+
+            todo.add_task(new_task)
+            todo.save_file()
+
+            entry.delete(0, END)
+            refresh_tasks()
+
+        btn3 = Button(root, text='Добавить', command=on_add_click)
+        btn3.place(x=146, y=202)
+
+    btn1 = Button(root, text='Добавить задачу', command=clicked, font=('Inter', 15))
     btn1.place(x=PlaceManage.x_x, y=PlaceManage.y1_y)
 
-    btn2 = Button(root, text='Сохранить и выйти', command=clicked, font=('Arial', 15))
-    btn2.place(x=PlaceManage.x_x1, y=PlaceManage.y1_y1)
+    def refresh_tasks():
+        for lbl in task_labels:
+            lbl.destroy()
 
+        task_labels.clear()
+
+        y = 36
+        for i, task in enumerate(todo.tasks, 1):
+            lbl = Label(root, text=f"{i}. {task}", font=('Inter', 15), bg='dark slate gray')
+            lbl.place(x=20, y=y)
+            task_labels.append(lbl)
+            y += 28
+
+    refresh_tasks()
     root.mainloop()
 
-"""
-        print(f'\n1. Добавить задачу')
+
+
+#btn2 = Button(root, text='Сохранить и выйти', font=('Arial', 15))
+#btn2.place(x=PlaceManage.x_x1, y=PlaceManage.y1_y1)
+
+"""print(f'\n1. Добавить задачу')
         print(f'2. Отметить задачу выполненной')
         print(f'3. Сохранить и выйти')
 
@@ -50,8 +81,7 @@ def main():
         elif choice == '3':
             todo.save_file()
             print("До скорой встречи!")
-            break
-            """
+            break """
 
 if __name__ == "__main__":
     main()
