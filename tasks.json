@@ -1,74 +1,10 @@
 [
   {
     "text": "Buy milk",
-    "completed": true
-  },
-  {
-    "text": "Feed the cat",
     "completed": false
   },
   {
-    "text": "Cleaning home",
-    "completed": true
-  },
-  {
-    "text": "выбросить мусор",
-    "completed": true
-  },
-  {
-    "text": "buy milk",
-    "completed": false
-  },
-  {
-    "text": "ghbetjgrgnrg",
-    "completed": false
-  },
-  {
-    "text": "hello",
-    "completed": false
-  },
-  {
-    "text": "ghbdn",
-    "completed": false
-  },
-  {
-    "text": "ghbdnf",
-    "completed": false
-  },
-  {
-    "text": "рпнролд",
-    "completed": false
-  },
-  {
-    "text": "акпип",
-    "completed": false
-  },
-  {
-    "text": "566",
-    "completed": false
-  },
-  {
-    "text": "при",
-    "completed": false
-  },
-  {
-    "text": "привет",
-    "completed": false
-  },
-  {
-    "text": "привет",
-    "completed": false
-  },
-  {
-    "text": "орпмгн",
-    "completed": false
-  },
-  {
-    "text": "рпмрспеса",
-    "completed": false
-  },
-  {
-    "text": "ghbftj",
+    "text": "Clinning home",
     "completed": false
   }
 ]

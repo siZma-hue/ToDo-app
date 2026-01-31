@@ -1,7 +1,6 @@
 from task_list import TaskList
 from task import Task
 from tkinter import *
-from place_manager import PlaceManage
 
 task_labels = []
 
@@ -12,9 +11,8 @@ def main():
 
     root = Tk()
     root.title('Welcome in ToDo App')
-    root.geometry('500x600')
-    root.configure(bg='dark slate gray')
-
+    root.geometry('500x700')
+    root.configure(bg='light pink')
 
 
 # начало работы с кнопкой
@@ -41,7 +39,7 @@ def main():
         btn3.place(x=146, y=202)
 
     btn1 = Button(root, text='Добавить задачу', command=clicked, font=('Inter', 15))
-    btn1.place(x=PlaceManage.x_x, y=PlaceManage.y1_y)
+    btn1.place(x=27, y=590)
 
     def refresh_tasks():
         for lbl in task_labels:
@@ -51,7 +49,7 @@ def main():
 
         y = 36
         for i, task in enumerate(todo.tasks, 1):
-            lbl = Label(root, text=f"{i}. {task}", font=('Inter', 15), bg='dark slate gray')
+            lbl = Label(root, text=f"{i}. {task}", font=('Inter', 15), bg='light pink', fg='white')
             lbl.place(x=20, y=y)
             task_labels.append(lbl)
             y += 28
