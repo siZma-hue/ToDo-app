@@ -1,3 +1,5 @@
+from PyInstaller.lib.modulegraph.modulegraph import entry
+
 from task_list import TaskList
 from task import Task
 from tkinter import *
@@ -10,51 +12,41 @@ def main():
     todo.load_file()
 
     root = Tk()
-    root.title('Welcome in ToDo App')
+
+    root['bg'] = '#fafafa'
+    root.title('ToDo')
     root.geometry('500x700')
-    root.configure(bg='light pink')
+    root.resizable(False, False)
+
+    frame1 = Frame(root, bg='black')
+    frame1.place(relx=0, rely=0, relwidth=1, relheight=0.7)
+
+    tasks_var = StringVar(value=todo.tasks)
+
+    list_box = Listbox(frame1, listvariable=tasks_var, bg='black', fg='white',
+                       font=('arial', 17))
+    list_box.pack(fill='both', expand=True, pady=30, padx=30)
+
+    def toggle_done(event):
+        index = list_box.curselection()[0]
+        todo.tasks[index].toggle()
+        tasks_var.set(todo.tasks)
+
+    list_box.bind("<Double-Button-1>", toggle_done)
+
+    canvas1 = Canvas(frame1, bg='black', highlightthickness=0)
+    canvas1.pack(fill='both', expand=True)
+
+    frame2 = Frame(root, bg='light blue')
+    frame2.place(relx=0, rely=0.7, relwidth=1, relheight=0.3)
+
+    entry = Entry(frame2, bg='white', fg='black', width=40)
+    entry.place(x=30, y=540)
+
+    canvas2 = Canvas(frame2, bg='light blue', highlightthickness=0)
+    canvas2.pack(fill='both', expand=True)
 
 
-# начало работы с кнопкой
-
-    def clicked():
-        entry = Entry(root, font=('Arial', 15))
-        entry.place(x=46, y=112)
-
-        def on_add_click():
-
-            text = entry.get()
-            if text.strip() == '':
-                return
-
-            new_task = Task(text=text)
-
-            todo.add_task(new_task)
-            todo.save_file()
-
-            entry.delete(0, END)
-            refresh_tasks()
-
-        btn3 = Button(root, text='Добавить', command=on_add_click)
-        btn3.place(x=146, y=202)
-
-    btn1 = Button(root, text='Добавить задачу', command=clicked, font=('Inter', 15))
-    btn1.place(x=27, y=590)
-
-    def refresh_tasks():
-        for lbl in task_labels:
-            lbl.destroy()
-
-        task_labels.clear()
-
-        y = 36
-        for i, task in enumerate(todo.tasks, 1):
-            lbl = Label(root, text=f"{i}. {task}", font=('Inter', 15), bg='light pink', fg='white')
-            lbl.place(x=20, y=y)
-            task_labels.append(lbl)
-            y += 28
-
-    refresh_tasks()
     root.mainloop()
 
 

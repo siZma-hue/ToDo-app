@@ -3,7 +3,10 @@ class Task:
         self.text = text
         self.completed = completed
 
+    def toggle(self):
+        self.completed = not self.completed
+
     def __str__(self):
         status = "✓" if self.completed else "✗"
-        return f'{status} {self.text}'
+        return f'{status}   {self.text}'
 
