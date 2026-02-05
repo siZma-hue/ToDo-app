@@ -1,18 +1,14 @@
 [
   {
-    "text": "Buy milk",
+    "text": "Купить хлеб",
     "completed": true
   },
   {
-    "text": "Clinning home",
-    "completed": false
-  },
-  {
-    "text": "постирать одежду",
+    "text": "Сделать уборку дома",
     "completed": true
   },
   {
-    "text": "арир",
+    "text": "Вычесать кота",
     "completed": false
   }
 ]

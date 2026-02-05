@@ -1,5 +1,3 @@
-from PyInstaller.lib.modulegraph.modulegraph import entry
-
 from task_list import TaskList
 from task import Task
 from tkinter import *
@@ -18,6 +16,7 @@ def main():
     root.geometry('500x700')
     root.resizable(False, False)
 
+
     frame1 = Frame(root, bg='black')
     frame1.place(relx=0, rely=0, relwidth=1, relheight=0.7)
 
@@ -31,47 +30,47 @@ def main():
         index = list_box.curselection()[0]
         todo.tasks[index].toggle()
         tasks_var.set(todo.tasks)
+        todo.save_file()
 
     list_box.bind("<Double-Button-1>", toggle_done)
 
     canvas1 = Canvas(frame1, bg='black', highlightthickness=0)
     canvas1.pack(fill='both', expand=True)
 
-    frame2 = Frame(root, bg='light blue')
+    frame2 = Frame(root, bg='#ECEBEC')
     frame2.place(relx=0, rely=0.7, relwidth=1, relheight=0.3)
 
-    entry = Entry(frame2, bg='white', fg='black', width=40)
-    entry.place(x=30, y=540)
 
-    canvas2 = Canvas(frame2, bg='light blue', highlightthickness=0)
-    canvas2.pack(fill='both', expand=True)
+    def delete_task():
+        index = list_box.curselection()[0]
+        todo.remove_task(todo.tasks[index])
+        tasks_var.set(todo.tasks)
+        todo.save_file()
+
+    btn_delete = Button(frame2, text='Удалить', command=delete_task)
+    btn_delete.place(relx=0.22, rely=0.75, anchor='e')
+
+    entry = Entry(frame2, bg='black', fg='white', font=('arial', 12))
+    entry.place(relx=0.05, rely=0.2, relwidth=0.7)
+
+    def add_task():
+        text = entry.get().strip()
+        if not text:
+            return
+
+        todo.add_task(Task(text))
+        tasks_var.set(todo.tasks)
+        todo.save_file()
+
+        entry.delete(0, END)
+
+
+    btn2_add = Button(frame2, text='Добавить', command=add_task)
+    btn2_add.place(relx=0.24, rely=0.50, anchor='e')
 
 
     root.mainloop()
 
-
-
-#btn2 = Button(root, text='Сохранить и выйти', font=('Arial', 15))
-#btn2.place(x=PlaceManage.x_x1, y=PlaceManage.y1_y1)
-
-"""print(f'\n1. Добавить задачу')
-        print(f'2. Отметить задачу выполненной')
-        print(f'3. Сохранить и выйти')
-
-        choice = input("Выберите действие: ")
-
-        if choice == '1':
-            text = input("Введите задачу: ")
-            todo.add_task(Task(text))
-
-        elif choice == '2':
-            num = int(input("Номер задачи: "))
-            todo.tasks[num - 1].completed = True
-
-        elif choice == '3':
-            todo.save_file()
-            print("До скорой встречи!")
-            break """
 
 if __name__ == "__main__":
     main()
