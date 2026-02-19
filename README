@@ -1,6 +1,6 @@
 # ToDo App
 My first pet-project ToDo application.
-Simple console-based ToDo application in Python.
+Simple ToDo application in Python and GUI in base on Tkinter
 
 # Features
 - Add tasks
